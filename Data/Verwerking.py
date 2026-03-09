@@ -42,15 +42,16 @@ plt.show()
 # =================================================================
 
 interpolatie = interp1d(d, B_langs_as, kind='cubic')
-d_interpolatie = np.linspace(d[0], d[-1], 100)
+d_interpolatie = np.linspace(d[0], d[-1], 1000)
 B_interpolatie = interpolatie(d_interpolatie)
-plt.plot(d, B_langs_as, 'o', label='Data')
-plt.plot(d_interpolatie, B_interpolatie, '-', label='Interpolatie')
+plt.plot(d, B_langs_as*10**3, 'o', label='Data')
+plt.plot(d_interpolatie, B_interpolatie*10**3, '-', label='Interpolatie')
 plt.xlabel("d (mm)")
-plt.ylabel("B langs as (T)")
+plt.ylabel("B langs as (mT)")
 plt.title("Interpolatie van het magnetisch veld")
 plt.grid()
-plt.legend()
+plt.axvline(x=13.69, color='r', linestyle='--', label='Midden van de spoelen')
+plt.legend(fontsize=6, loc='upper right')
 plt.show()
 
 # Het minimum van het veld in het midden tussen de 10 en 17 mm,
@@ -61,9 +62,9 @@ plt.show()
 # en op welke afstanden van de spoel de rest van het magnetisch veld is.
 
 # -----------------------------------------------------------------------
-# midden bepalen
+# minimum van de interpolatiebepalen in het gebied tussen 10 en 17 mm
 # -----------------------------------------------------------------------
 
-mask = (d > 10) & (d < 17)
-d_midden = d[mask][np.argmin(B_langs_as[mask])]
-print(f"Het midden van de spoelen ligt op {d_midden:.2f} mm")
+mask = (10 < d_interpolatie) & (d_interpolatie < 17)
+d_midden = d_interpolatie[mask][np.argmin(B_interpolatie[mask])]
+print(f"Het midden van de spoelen ligt op {d_midden:.2f} mm") # Dit gaf een waarde van 13.69 mm
