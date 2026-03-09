@@ -3,7 +3,7 @@ import scipy as sp
 import matplotlib.pyplot as plt
 import pandas as pd
 
-sheet = pd.read_excel("Kalibratie magnetisch veld.xlsx", 0)
+sheet = pd.read_excel("Data/Kalibratie magnetisch veld.xlsx", 0)
 
 d = np.array(sheet['d(mm)'])
 B = np.stack((sheet['Bx (µT)'], sheet['By (µT)'], sheet['Bz (µT)']), 1) * 10**-6
@@ -20,5 +20,18 @@ eenheidsvector = np.sum(B[mask, :], 0)
 eenheidsvector = eenheidsvector / (eenheidsvector @ eenheidsvector)**(1/2)
 
 B_langs_as = B @ eenheidsvector
-print(B_langs_as)
 
+
+# =================================================================
+# Is dat hier BIOPHYSICS
+# =================================================================
+
+B_data = B_langs_as * 10**3 # B_data in militesla
+
+plt.plot(d, B_data)
+plt.xlabel("d (mm)")
+plt.ylabel("B langs as (mT)")
+
+plt.title("Kalibratie van het magnetisch veld")
+plt.grid()
+plt.show()
