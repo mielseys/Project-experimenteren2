@@ -11,3 +11,5 @@ In deze figuur zie je dat ons magnetisch veld niet mooi homogeen is en er een da
 Door deze datapunten te interpoleren vonden we mooi een fit van het magnetisch veld waarvan je het resultaat hieronder ziet. Uiteindelijk hebben we op onze interpolatie een mask uitgevoerd op het interval $\in [10,17]$ cm om het minimum te vinden van ons magnetisch veld in het midden, wat ons ook meteen zegt op welke afstand het midden van onze spoel ligt.
 
 ![Interpolatie van het magnetisch veld](Figuren/interpolatie_magnetisch_veld.png)
+
+Het resultaat van het midden ligt in onze figuur en data op een afstand van 13.69 cm.
