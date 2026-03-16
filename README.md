@@ -4,7 +4,7 @@
 
 Dit is onze github voor het Faraday-effect project.
 
-Het uitgebreid verslag met onze resultaten staan in deze [readme](Data/README.md).
+Het uitgebreide verslag met onze resultaten staat in deze [readme](Data/README.md).
 
 ## 👥 Team
 
