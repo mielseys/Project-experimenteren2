@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from scipy.interpolate import interp1d
 
-sheet = pd.read_excel("Data/Kalibratie magnetisch veld.xlsx", 0)
+sheet = pd.read_excel("Data/Kalibratie_magnetisch_veld.xlsx", 0)
 
 d = np.array(sheet['d(cm)'])
 B = np.stack((sheet['Bx (µT)'], sheet['By (µT)'], sheet['Bz (µT)']), 1) * 10**-6
