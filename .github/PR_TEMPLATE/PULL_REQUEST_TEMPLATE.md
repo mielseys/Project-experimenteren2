@@ -6,8 +6,8 @@ Beschrijf de wijzigingen die je hebt gemaakt.
 
 Selecteer het type wijziging:
 
-- [ ] Bug fix (non-breaking change die een issue oplost)
-- [ ] Nieuwe feature (non-breaking change die functionaliteit toevoegt)
+- [ ] Bug fix
+- [ ] Nieuwe feature
 - [ ] Breaking change (fix of feature die bestaande functionaliteit zou breken)
 - [ ] Documentatie update
 - [ ] Code refactoring
