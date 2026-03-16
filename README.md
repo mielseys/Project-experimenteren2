@@ -4,6 +4,8 @@
 
 Dit is onze github voor het Faraday-effect project.
 
+Het uitgebreid verslag met onze resultaten staan in deze [readme](Data/README.md).
+
 ## 👥 Team
 
 - Tristan Cools
@@ -38,7 +40,7 @@ Project-experimenteren2/
 
 ## 🔧 Status
 
-Project Status: 
+Project Status:
 
 - Kalibratie inclusief gegevensverwerking ervan gedaan!
 - Metingen van de kwarts nog niet voltooid (problemen met de opstelling te verbinden met de arduino en het circuit aan de praat te krijgen).
