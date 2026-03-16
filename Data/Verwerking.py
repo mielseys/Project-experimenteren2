@@ -46,15 +46,15 @@ interpolatie = interp1d(d, B_langs_as, kind='cubic')
 d_interpolatie = np.linspace(d[0], d[-1], 1000)
 B_interpolatie = interpolatie(d_interpolatie)
 
-# Het minimum van het veld in het midden tussen de 10 en 17 mm,
-# het minimum die daar wordt bekomen is het gevolg van dat onze 2 spoelen tegen elkaar gelijmd zijn,
-# en dat het dat het veld daar iets minder sterk is.
+# Het minimum van het veld in het midden tussen de 10 en 17 cm,
+# het minimum dat daar wordt bekomen is het gevolg van dat onze 2 spoelen tegen elkaar gelijmd zijn,
+# en dat het veld daar iets minder sterk is.
 
-# Aan de hand van dat minimum kunnen we bepalen op welke afstand het midden van de spoelen ligt, 
+# Aan de hand van dat minimum kunnen we bepalen op welke afstand het midden van de spoelen ligt,
 # en op welke afstanden van de spoel de rest van het magnetisch veld is.
 
 # =======================================================================
-# minimum van de interpolatiebepalen in het gebied tussen 10 en 17 mm
+# minimum van de interpolatie bepalen in het gebied tussen 10 en 17 cm
 # =======================================================================
 
 mask = (10 < d_interpolatie) & (d_interpolatie < 17)
@@ -73,7 +73,7 @@ plt.xlabel("d (cm)")
 plt.ylabel("B langs as (mT)")
 plt.title("Interpolatie van het magnetisch veld")
 plt.grid()
-plt.axvline(x=13.69, color='r', linestyle='--', label='Midden van de spoelen')
+plt.axvline(x=d_midden, color='r', linestyle='--', label='Midden van de spoelen')
 plt.legend(fontsize=6, loc='upper right')
 plt.savefig("Data/Figuren/interpolatie_magnetisch_veld.png", dpi=300, bbox_inches='tight')
 plt.close()
