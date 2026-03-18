@@ -24,7 +24,7 @@ Hij praat daar ook over de frequentie, in sectie *"Getting to know the Lock-in"*
 > imply an infinite wait. Thus, there is a trade off between how quickly you want to make
 > a measurement, and how much low-frequency noise you’re able to tolerate.
 
-circuit-setup-lockin
+### circuit-setup-lockin
 
 ![Circuit](Circuits/circuit-setup-lockin.png)
 
