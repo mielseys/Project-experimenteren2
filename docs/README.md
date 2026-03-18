@@ -26,6 +26,6 @@ a measurement, and how much low-frequency noise you’re able to tolerate.
 
 circuit-setup-lockin
 
-![Circuit](Docs/Circuits/.png)
+![Circuit](Circuits/circuit-setup-lockin.png)
 
 Waarbij de DMM onze oscilloscoop zal zijn en de simulator box onze functie generator.
