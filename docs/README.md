@@ -7,7 +7,7 @@ Ik heb een site van PhysicsOpenLab gevonden waar ze vrij DIY-achtig het Faraday-
 - Referentie: **[Faraday Rotation – PhysicsOpenLab](https://physicsopenlab.org/2019/08/20/faraday-rotation/)**
 
 
-In [deze](https://web.pa.msu.edu/people/edmunds/Lock_In_Amplifiers/lock_in_lab_experiments_univ_tennessee.pdf) paper is er een sectie ``Getting to know the Lock-in``waar Dr. G. Bradley Armen wat dieper in gaan oop hoe een lock in amplifier werkt en hoe je er mee werkt.
+In [deze](https://web.pa.msu.edu/people/edmunds/Lock_In_Amplifiers/lock_in_lab_experiments_univ_tennessee.pdf) paper is er een sectie `Getting to know the Lock-in` waar Dr. G. Bradley Armen wat dieper in gaan oop hoe een lock in amplifier werkt en hoe je er mee werkt.
 
 Hij praat daar ook over de frequentie:
 
