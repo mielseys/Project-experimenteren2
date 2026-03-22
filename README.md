@@ -30,7 +30,7 @@ Het uitgebreide verslag met onze resultaten staat in deze [readme](Data/README.m
 - Besluit [Naam]
 - Referenties [Iedereen waar nodig]
 
-Zet gerust met meerdere je naam en op meerdere plaatsen. Wil je specifieeren wat je doet, dan zet je dit er ook bij.
+Zet gerust met meerdere je naam en op meerdere plaatsen. Wil je specificeren wat je doet, dan zet je dit er ook bij.
 
 ## Installatie
 
