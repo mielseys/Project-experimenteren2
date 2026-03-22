@@ -12,7 +12,33 @@ Het uitgebreide verslag met onze resultaten staat in deze [readme](Data/README.m
 - Miel Seys
 - Casper Faulconer
 
-### Installatie
+## Taakverdeling & To Do
+
+**Dataverwerking tegen (26 maart):**
+
+- Foutenrekening [Naam]
+- Magnetisch veld bepalen uit meetdata [Tristan, Naam]
+- Verdet constante bepalen [Tristan, Naam]
+- Biophysics [Tristan, Naam(optioneel)]
+
+**Verslag tegen (29 maart):**
+
+- abstract [Naam]
+- Introductie [Tristan, Naam]
+- Methode [Naam]
+- Resultaten [Naam]
+- Bespreking [Naam]
+- Besluit [Naam]
+- Referenties [Iedereen waar nodig]
+- Appendix [Tristan, Naam]
+
+**Slides (Later):**
+
+- Specifieer [Naam]
+
+Zet gerust met meerdere je naam en op meerdere plaatsen. Wil je specificeren wat je doet, dan zet je dit er ook bij.
+
+## Installatie
 
 1. Clone het repository:
 
