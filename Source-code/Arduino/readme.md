@@ -1,1 +1,1 @@
-Hier komt de arduino code
+In het bestand CalibrationB.ino kan de Arduino code die werd gebruikt voor de kalibratie van het magnetisch veld teruggevonden worden. 
