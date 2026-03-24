@@ -1,0 +1,47 @@
+import numpy as np
+import pandas as pd
+from scipy.interpolate import interp1d
+import scipy.integrate as integrate
+from pathlib import Path
+
+# =================================================================
+# Deze python file heeft als doel om het magnetisch veld door onze
+# staaf fused kwarts te bepalen die (200 +- 1)mm lang is.
+# =================================================================
+
+base_dir = Path(__file__).resolve().parent
+excel_path = base_dir / "Data-sheet.xlsx"
+sheet = pd.read_excel(excel_path, 0)
+d = np.array(sheet['d(cm)'])
+B = np.stack((sheet['Bx (µT)'], sheet['By (µT)'], sheet['Bz (µT)']), 1) * 10**-6
+B_magnitude = (np.einsum('ij, ij -> i', B, B))**(1/2)
+
+# =================================================================
+# Interpolatie van het veld
+# =================================================================
+
+mask = B[:, 1] > 10**-3
+# We selecteren de metingen met een y-component groter dan 1 mT
+
+eenheidsvector = np.sum(B[mask, :], 0)
+eenheidsvector = eenheidsvector / (eenheidsvector @ eenheidsvector)**(1/2)
+
+B_langs_as = B @ eenheidsvector
+
+interpolatie = interp1d(d, B_langs_as, kind='cubic')
+d_interpolatie = np.linspace(d[0], d[-1], 1000)
+B_interpolatie = interpolatie(d_interpolatie)
+
+# De staaf werd in het midden van de 2 spoelen geplaatst,
+# wat op een afstand van 13.69cm lag in de interpolatie van het veld.
+# We willen dus het veld in het interval [3.69, 23.69]cm hebben,
+# en dat veld dan integreren over de lengte van de fused kwarts staaf.
+
+def integrand(x):
+    return interpolatie(x)
+
+#integratie van het veld over de lengte van de staaf
+integraal_waarde, integraal_fout = integrate.quad(integrand, 3.69, 23.69)
+
+print("Het veld dat door de staaf gaat is ongeveer", integraal_waarde, "T*cm")
+print(integraal_fout, "is de fout op deze waarde")
