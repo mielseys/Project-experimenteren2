@@ -2,15 +2,16 @@ import numpy as np
 import pandas as pd
 from scipy.interpolate import interp1d
 import scipy.integrate as integrate
+from pathlib import Path
 
 # =================================================================
 # Deze python file heeft als doel om het magnetisch veld door onze
 # staaf fused kwarts te bepalen die (200 +- 1)mm lang is.
 # =================================================================
 
-
-sheet = pd.read_excel("Data/Data-sheet.xlsx", 0)
-
+base_dir = Path(__file__).resolve().parent
+excel_path = base_dir / "Data-sheet.xlsx"
+sheet = pd.read_excel(excel_path, 0)
 d = np.array(sheet['d(cm)'])
 B = np.stack((sheet['Bx (µT)'], sheet['By (µT)'], sheet['Bz (µT)']), 1) * 10**-6
 B_magnitude = (np.einsum('ij, ij -> i', B, B))**(1/2)
