@@ -41,7 +41,7 @@ def integrand(x):
     return interpolatie(x)
 
 #integratie van het veld over de lengte van de staaf
-Integraal = integrate.quad(integrand, 3.69, 23.69)
+integraal_waarde, integraal_fout = integrate.quad(integrand, 3.69, 23.69)
 
-print("Het veld dat door de staaf gaat is ongeveer", Integraal[0], "T*cm")
-print(Integraal[1], "is de fout op deze waarde")
+print("Het veld dat door de staaf gaat is ongeveer", integraal_waarde, "T*cm")
+print(integraal_fout, "is de fout op deze waarde")
