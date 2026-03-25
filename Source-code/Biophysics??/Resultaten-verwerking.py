@@ -17,7 +17,7 @@ base_dir = Path(__file__).resolve().parent
 excel_path = base_dir.parent.parent / "Data" / "Data-sheet.xlsx"
 
 # Excel sheet "Verwerking 2" bevat de resultaten.
-verwerking_2 = pd.read_excel(excel_path, sheet_name="Verwerking 2")
+verwerking_2 = pd.read_excel(excel_path, sheet_name="Verwerking_2")
 
 expected_verwerking_cols = {
     'Verdet (rad/(T * mm))',
@@ -41,6 +41,8 @@ if missing_metingen_cols:
     raise ValueError(
         f"Excel-sheet 'Metingen' mist de volgende kolommen: {sorted(missing_metingen_cols)}"
     )
+
+
 # Aantal meetpunten dat uit de dataset wordt gebruikt (b.v. 25 magnetische veld-metingen)
 N_POINTS = 25
 
