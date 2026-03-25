@@ -21,20 +21,23 @@ verwerking_2 = pd.read_excel(excel_path, 3)
 
 metingen = pd.read_excel(excel_path, 1)
 
+# Aantal meetpunten dat uit de dataset wordt gebruikt (b.v. 25 magnetische veld-metingen)
+N_POINTS = 25
+
 # ==========================================================
 # Resultaten experiment Faraday effect
 # ==========================================================
 
 verdet_cst_col = np.array(verwerking_2['Verdet (rad/(T * mm))'])
-verdet_cst_col_rel = verdet_cst_col[:25]
+verdet_cst_col_rel = verdet_cst_col[:N_POINTS]
 af_verdet_col = np.array(verwerking_2['AF_Verdet'])
-af_verdet_col_rel = af_verdet_col[:25]
+af_verdet_col_rel = af_verdet_col[:N_POINTS]
 
 mag_veld_col = np.array(verwerking_2['B_spoel (mT)'])
-mag_veld_col_rel = mag_veld_col[:25]
+mag_veld_col_rel = mag_veld_col[:N_POINTS]
 
 af_mag_veld_col = np.array(verwerking_2['AF_B (mt)'])
-af_mag_veld_col_rel = af_mag_veld_col[:25]
+af_mag_veld_col_rel = af_mag_veld_col[:N_POINTS]
 
 lengte_kwarts = 200  # mm
 af_lengte_kwarts = 1  # mm
