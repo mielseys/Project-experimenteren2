@@ -9,7 +9,6 @@ sheet = pd.read_excel("Data/Data-sheet.xlsx", 0)
 d = np.array(sheet['d(cm)'])
 B = np.stack((sheet['Bx (µT)'], sheet['By (µT)'], sheet['Bz (µT)']), 1) * 10**-6
 B_magnitude = (np.einsum('ij, ij -> i', B, B))**(1/2)
-
 # We gaan er vanuit dat het veld in het midden van de spoelen perfect in de juiste richting is gericht
 # Om het veld dan langs deze as te integreren moeten we de component van het veld langs deze as te bepalen
 # We bepalen dus een eenheidsvector door de gemiddelde richting te bepalen van de middelste metingen
