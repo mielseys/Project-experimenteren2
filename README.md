@@ -16,7 +16,7 @@ Het uitgebreide verslag met onze resultaten staat in deze [readme](Data/README.m
 
 **Dataverwerking tegen (26 maart):**
 
-- Foutenrekening []
+- Foutenrekening [Casper, Tristan]
 - Magnetisch veld bepalen uit meetdata [Tristan, Miel]
 - Verdet constante bepalen [Tristan, Casper]
 - Biophysics [Tristan, Miel]
@@ -30,7 +30,7 @@ Het uitgebreide verslag met onze resultaten staat in deze [readme](Data/README.m
 - Bespreking [Casper, Miel]
 - Besluit [Miel]
 - Referenties [Iedereen waar nodig]
-- Appendix [Tristan, Naam]
+- Appendix [Tristan]
 
 **Slides (Later):**
 
