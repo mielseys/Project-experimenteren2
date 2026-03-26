@@ -86,3 +86,15 @@ plt.grid()
 plt.legend(fontsize=6, loc='upper right')
 plt.savefig("Data/Figuren/b_magnitude_vs_b_langs_as.png", dpi=300, bbox_inches='tight')
 plt.close()
+
+# =======================================================================
+# Data magnetisch veld plotten in functie van de afstand d, met foutbalken
+# =======================================================================
+
+plt.plot(d, B_langs_as*10**3, 'o', label='Data')
+plt.xlabel("d (cm)")
+plt.ylabel("B langs as (mT)")
+plt.title("Data van het magnetisch veld")
+plt.legend(fontsize=6, loc='upper right')
+plt.savefig("Data/Figuren/data_magnetisch_veld.png", dpi=300, bbox_inches='tight')
+plt.close()
