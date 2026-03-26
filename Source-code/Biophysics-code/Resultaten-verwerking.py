@@ -44,35 +44,33 @@ if missing_metingen_cols:
 
 
 # Aantal meetpunten dat uit de dataset wordt gebruikt (b.v. 25 magnetische veld-metingen)
-N_POINTS = 25
+N_POINTS = 25 # Alleen maar de relevante data.
 
 # ==========================================================
 # Resultaten experiment Faraday effect
 # ==========================================================
 
-verdet_cst_col = np.array(verwerking_2['Verdet (rad/(T * mm))'])
-verdet_cst_col_rel = verdet_cst_col[:N_POINTS]
-af_verdet_col = np.array(verwerking_2['AF_Verdet'])
-af_verdet_col_rel = af_verdet_col[:N_POINTS]
+verdet_cst_col = np.array(verwerking_2['Verdet (rad/(T * mm))'])[:N_POINTS]
+af_verdet_col = np.array(verwerking_2['AF_Verdet'])[:N_POINTS]
 
-mag_veld_col = np.array(verwerking_2['B_spoel (mT)'])
-mag_veld_col_rel = mag_veld_col[:N_POINTS]
-
-af_mag_veld_col = np.array(verwerking_2['AF_B (mt)'])
-af_mag_veld_col_rel = af_mag_veld_col[:N_POINTS]
+mag_veld_col = np.array(verwerking_2['B_spoel (mT)'])[:N_POINTS]
+af_mag_veld_col = np.array(verwerking_2['AF_B (mt)'])[:N_POINTS]
 
 lengte_kwarts = 200  # mm
 af_lengte_kwarts = 1  # mm
 
-frequentie = np.array(metingen['Frequentie (Hz)'])  
+hoek_beta = np.array(verwerking_2['dtheta'])[:N_POINTS]
+af_hoek_beta = np.array(verwerking_2['AF (dtheta)'])[:N_POINTS]
+
+frequentie = np.array(metingen['Frequentie (Hz)'])[:N_POINTS]
 
 # ==========================================================
 # Figuren plotten
 # ==========================================================
 
 # Verdet constante in functie van magnetisch veld
-plt.plot(mag_veld_col_rel, verdet_cst_col_rel, 'o', label='Verdet constante')
-plt.errorbar(mag_veld_col_rel, verdet_cst_col_rel, xerr=af_mag_veld_col_rel, yerr=af_verdet_col_rel, fmt='o', ecolor='red', capsize=5, label='Foutbalken')
+plt.plot(mag_veld_col, verdet_cst_col, 'o', label='Verdet constante')
+plt.errorbar(mag_veld_col, verdet_cst_col, xerr=af_mag_veld_col, yerr=af_verdet_col, fmt='o', ecolor='red', capsize=5, label='Foutbalken')
 plt.xlabel(r'Magnetisch veld $(mT)$')
 plt.ylabel(r'Verdet constante $(rad/(T * mm))$')
 plt.title('Verdet constante in functie van het magnetisch veld')
@@ -83,8 +81,8 @@ plt.close()
 
 
 # Verdet constante in functie van de frequentie
-plt.plot(frequentie, verdet_cst_col_rel, 'o', label='Verdet constante')
-plt.errorbar(frequentie, verdet_cst_col_rel, xerr=None, yerr=af_verdet_col_rel, fmt='o', ecolor='red', capsize=5, label='Foutbalken')
+plt.plot(frequentie, verdet_cst_col, 'o', label='Verdet constante')
+plt.errorbar(frequentie, verdet_cst_col, xerr=None, yerr=af_verdet_col, fmt='o', ecolor='red', capsize=5, label='Foutbalken')
 plt.xlabel(r'Frequentie $(Hz)$')
 plt.ylabel(r'Verdet constante $(rad/(T * mm))$')
 plt.title('Verdet constante in functie van de frequentie')
@@ -92,3 +90,19 @@ plt.grid()
 plt.legend(fontsize=6, loc='upper right')
 plt.savefig(base_dir.parent.parent / "Data" / "Figuren" / "verdet_constante_vs_frequentie.png", dpi=300, bbox_inches='tight')
 plt.close()
+
+# Hoek beta in functie van het magnetisch veld
+plt.plot(mag_veld_col, hoek_beta, 'o', label=r'Hoek $\beta$')
+plt.errorbar(mag_veld_col, hoek_beta, xerr=af_mag_veld_col, yerr=af_hoek_beta, fmt='o', ecolor='red', capsize=5, label='Foutbalken')
+plt.xlabel(r'Magnetisch veld $(mT)$')
+plt.ylabel(r'Hoek $\beta$ $(rad)$')
+plt.title('Hoek beta in functie van het magnetisch veld')
+plt.grid()
+plt.legend(fontsize=6, loc='upper right')
+plt.savefig(base_dir.parent.parent / "Data" / "Figuren" / "hoek_beta_vs_magnetisch_veld.png", dpi=300, bbox_inches='tight')
+plt.close()
+
+# =======================================================
+# Lineaire regressie van hoek beta in functie van het magnetisch veld
+# =======================================================
+
