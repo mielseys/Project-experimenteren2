@@ -77,3 +77,16 @@ plt.legend(fontsize=6, loc='upper right')
 plt.savefig("Data/Figuren/interpolatie_magnetisch_veld.png", dpi=300, bbox_inches='tight')
 plt.close()
 
+# =======================================================================
+# B_magnitude vergelijken met B_langs_as scatterplotten   
+# =======================================================================
+
+plt.scatter(d, B_langs_as*10**3, s=5,  label=r'$B_{langs\_as}$')
+plt.scatter(d, B_magnitude*10**3, s=5, label=r'$B_{Magnitude}$')
+plt.xlabel("d (cm)")
+plt.ylabel("B langs as (mT)")
+plt.title("B_magnitude vs B_langs_as")
+plt.grid()
+plt.legend(fontsize=6, loc='upper right')
+plt.savefig("Data/Figuren/b_magnitude_vs_b_langs_as.png", dpi=300, bbox_inches='tight')
+plt.close()
