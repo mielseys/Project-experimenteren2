@@ -14,8 +14,8 @@ B_magnitude = (np.einsum('ij, ij -> i', B, B))**(1/2)
 # We bepalen dus een eenheidsvector door de gemiddelde richting te bepalen van de middelste metingen
 # en dan het puntproduct te nemen met onze data
 mask = B_magnitude > 10**-3
-# We selecteren de metingen met een y-component groter dan 1 mT
-
+# We selecteren de metingen met een veldsterkte (magnitude) groter dan 1 mT,
+# zodat we de gemiddelde veldrichting bepalen in het gebied waar het veld sterk en goed gedefinieerd is.
 eenheidsvector = np.sum(B[mask, :], 0)
 eenheidsvector = eenheidsvector / (eenheidsvector @ eenheidsvector)**(1/2)
 
