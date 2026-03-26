@@ -44,7 +44,7 @@ if missing_metingen_cols:
 
 
 # Aantal meetpunten dat uit de dataset wordt gebruikt (b.v. 25 magnetische veld-metingen)
-N_POINTS = 25 # Alleen maar de relevante data.
+N_POINTS = 25  # Alleen maar de relevante data.
 
 # ==========================================================
 # Resultaten experiment Faraday effect
