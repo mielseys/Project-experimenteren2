@@ -20,8 +20,8 @@ B_magnitude = (np.einsum('ij, ij -> i', B, B))**(1/2)
 # Interpolatie van het veld
 # =================================================================
 
-mask = B[:, 1] > 10**-3
-# We selecteren de metingen met een y-component groter dan 1 mT
+mask = B_magnitude > 10**-3
+# We selecteren de metingen waarvoor de veldsterkte (|B|) groter is dan 1 mT
 
 eenheidsvector = np.sum(B[mask, :], 0)
 eenheidsvector = eenheidsvector / (eenheidsvector @ eenheidsvector)**(1/2)

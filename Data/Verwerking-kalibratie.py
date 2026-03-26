@@ -13,9 +13,9 @@ B_magnitude = (np.einsum('ij, ij -> i', B, B))**(1/2)
 # Om het veld dan langs deze as te integreren moeten we de component van het veld langs deze as te bepalen
 # We bepalen dus een eenheidsvector door de gemiddelde richting te bepalen van de middelste metingen
 # en dan het puntproduct te nemen met onze data
-mask = B[:, 1] > 10**-3
-# We selecteren de metingen met een y-component groter dan 1 mT
-
+mask = B_magnitude > 10**-3
+# We selecteren de metingen met een veldsterkte (magnitude) groter dan 1 mT,
+# zodat we de gemiddelde veldrichting bepalen in het gebied waar het veld sterk en goed gedefinieerd is.
 eenheidsvector = np.sum(B[mask, :], 0)
 eenheidsvector = eenheidsvector / (eenheidsvector @ eenheidsvector)**(1/2)
 
@@ -77,3 +77,16 @@ plt.legend(fontsize=6, loc='upper right')
 plt.savefig("Data/Figuren/interpolatie_magnetisch_veld.png", dpi=300, bbox_inches='tight')
 plt.close()
 
+# =======================================================================
+# B_magnitude vergelijken met B_langs_as scatterplotten   
+# =======================================================================
+
+plt.scatter(d, B_langs_as*10**3, s=5,  label=r'$B_{langs\_as}$')
+plt.scatter(d, B_magnitude*10**3, s=5, label=r'$B_{Magnitude}$')
+plt.xlabel("d (cm)")
+plt.ylabel("B langs as (mT)")
+plt.title("B_magnitude vs B_langs_as")
+plt.grid()
+plt.legend(fontsize=6, loc='upper right')
+plt.savefig("Data/Figuren/b_magnitude_vs_b_langs_as.png", dpi=300, bbox_inches='tight')
+plt.close()
