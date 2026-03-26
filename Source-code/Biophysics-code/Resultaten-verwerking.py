@@ -5,6 +5,7 @@
 # ==========================================================
 
 import numpy as np
+import scipy as sp
 import pandas as pd
 from pathlib import Path
 import matplotlib.pyplot as plt
@@ -103,3 +104,38 @@ plt.close()
 # Lineaire regressie van hoek beta in functie van het magnetisch veld
 # =======================================================
 
+gewichten_beta = 3 / af_hoek_beta
+
+def kostfunctie(coefficienten, gewichten = gewichten_beta, beta = hoek_beta, B = mag_veld_col):
+    a0, a1 = coefficienten
+    d_kwadraat = (beta - a0 - a1 * B)**2
+    return gewichten @ d_kwadraat
+
+fit = sp.optimize.minimize
+
+Delta = np.sum(gewichten_beta) * (gewichten_beta @ (mag_veld_col)**2) - (mag_veld_col @ gewichten_beta)**2
+
+a0 = ((gewichten_beta @ (mag_veld_col)**2) * (gewichten_beta @ hoek_beta) - (gewichten_beta @ mag_veld_col) * (np.sum(gewichten_beta * hoek_beta * mag_veld_col))) / Delta
+a1 = (np.sum(gewichten_beta) * np.sum(gewichten_beta * hoek_beta * mag_veld_col) - (gewichten_beta @ mag_veld_col) * (gewichten_beta @ hoek_beta)) / Delta
+
+sigma_y = ((gewichten_beta @ (hoek_beta - a0 - a1 * mag_veld_col)**2) / 23)**(1/2)
+sf_a0 = sigma_y * ((gewichten_beta @ (mag_veld_col)**2) / Delta)**(1/2)
+sf_a1 = sigma_y * ((np.sum(gewichten_beta)) / Delta)**(1/2)
+
+print(a0)
+print(a1)
+print(sf_a0)
+print(sf_a1)
+
+B_punten = np.linspace(np.min(mag_veld_col), np.max(mag_veld_col), 300)
+theta_punten = a0 + a1 * B_punten
+
+plt.plot(mag_veld_col, hoek_beta, 'o', label=r'Hoek $\beta$')
+plt.errorbar(mag_veld_col, hoek_beta, xerr=af_mag_veld_col, yerr=af_hoek_beta, fmt='o', ecolor='red', capsize=5, label=r'Hoek $\beta$')
+plt.plot(B_punten, theta_punten, label="fit")
+plt.xlabel(r'Magnetisch veld $(mT)$')
+plt.ylabel(r'Hoek $\beta$ $(rad)$')
+plt.grid()
+plt.legend(fontsize=6, loc='upper right')
+plt.savefig(base_dir.parent.parent / "Data" / "Figuren" / "hoek_beta_vs_magnetisch_veld_met_fit.png", dpi=300, bbox_inches='tight')
+plt.close()
