@@ -33,6 +33,7 @@ if missing_verwerking_cols:
 
 metingen = pd.read_excel(excel_path, sheet_name="Metingen")
 
+
 expected_metingen_cols = {
     'Frequentie (Hz)',
 }
