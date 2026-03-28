@@ -123,15 +123,17 @@ sigma_y = ((gewichten_beta @ (hoek_beta - a0 - a1 * mag_veld_col)**2) / 23)**(1/
 sf_a0 = sigma_y * ((gewichten_beta @ (mag_veld_col)**2) / Delta)**(1/2)
 sf_a1 = sigma_y * ((np.sum(gewichten_beta)) / Delta)**(1/2)
 
-print(a0)
-print(a1)
-print(sf_a0)
-print(sf_a1)
+print(f"a0: {a0}")
+print(f"a1: {a1}")
+print(f"sf_a0: {sf_a0}")
+print(f"AF(a0): {3*sf_a0}")
+print(f"sf_a1: {sf_a1}")
+print(f"AF(a1): {3*sf_a1}")
 
 B_punten = np.linspace(np.min(mag_veld_col), np.max(mag_veld_col), 300)
 theta_punten = a0 + a1 * B_punten
 
-plt.plot(mag_veld_col, hoek_beta, 'o', label=r'Hoek $\beta$')
+#plt.plot(mag_veld_col, hoek_beta, 'o', label=r'Hoek $\beta$')
 plt.errorbar(mag_veld_col, hoek_beta, xerr=af_mag_veld_col, yerr=af_hoek_beta, fmt='o', ecolor='red', capsize=5, label=r'Hoek $\beta$')
 plt.plot(B_punten, theta_punten, label="fit")
 plt.xlabel(r'Magnetisch veld $(mT)$')
@@ -139,4 +141,5 @@ plt.ylabel(r'Hoek $\beta$ $(rad)$')
 plt.grid()
 plt.legend(fontsize=6, loc='upper right')
 plt.savefig(base_dir.parent.parent / "Data" / "Figuren" / "hoek_beta_vs_magnetisch_veld_met_fit.png", dpi=300, bbox_inches='tight')
+plt.show()
 plt.close()
