@@ -119,16 +119,27 @@ Delta = np.sum(gewichten_beta) * (gewichten_beta @ (mag_veld_col)**2) - (mag_vel
 a0 = ((gewichten_beta @ (mag_veld_col)**2) * (gewichten_beta @ hoek_beta) - (gewichten_beta @ mag_veld_col) * (np.sum(gewichten_beta * hoek_beta * mag_veld_col))) / Delta
 a1 = (np.sum(gewichten_beta) * np.sum(gewichten_beta * hoek_beta * mag_veld_col) - (gewichten_beta @ mag_veld_col) * (gewichten_beta @ hoek_beta)) / Delta
 
+a1_m = a1 * 1000  # rad/T
+lengte_kwarts_m = lengte_kwarts / 1000  # m
+af_lengte_kwarts_m = af_lengte_kwarts / 1000  # m
+
 sigma_y = ((gewichten_beta @ (hoek_beta - a0 - a1 * mag_veld_col)**2) / 23)**(1/2)
 sf_a0 = sigma_y * ((gewichten_beta @ (mag_veld_col)**2) / Delta)**(1/2)
 sf_a1 = sigma_y * ((np.sum(gewichten_beta)) / Delta)**(1/2)
+af_a0 = 3 * sf_a0  # rad
+af_a1 = 3 * sf_a1  # rad/mT
+V = a1_m / lengte_kwarts_m  # rad/(T * m)
+af_V = V * (af_a1 * 1000/a1_m  + af_lengte_kwarts_m/lengte_kwarts_m)  # rad/(T * m)
+
 
 print(f"a0: {a0}")
-print(f"a1: {a1}")
+print(f"a1: {a1}rad/mT")
 print(f"sf_a0: {sf_a0}")
-print(f"AF(a0): {3*sf_a0}")
+print(f"AF(a0): {af_a0}")
 print(f"sf_a1: {sf_a1}")
-print(f"AF(a1): {3*sf_a1}")
+print(f"AF(a1): {af_a1}")
+print(f"Verdet constante (a1 / lengte kwarts): {V} rad/(T * m)")
+print(f"AF Verdet constante: {af_V} rad/(T * m)")
 
 B_punten = np.linspace(np.min(mag_veld_col), np.max(mag_veld_col), 300)
 theta_punten = a0 + a1 * B_punten
