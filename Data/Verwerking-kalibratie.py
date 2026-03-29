@@ -28,7 +28,7 @@ B_langs_as = B @ eenheidsvector
 
 B_data = B_langs_as * 10**3 # B_data in militesla
 
-plt.plot(d, B_data)
+plt.plot(d- 13.69, B_data,'o')
 plt.xlabel("d (cm)")
 plt.ylabel("B langs as (mT)")
 plt.grid()
