@@ -115,15 +115,6 @@ Delta = np.sum(gewichten_beta) * (gewichten_beta @ (B_over_as)**2) - (B_over_as 
 a0 = ((gewichten_beta @ (B_over_as)**2) * (gewichten_beta @ hoek_beta) - (gewichten_beta @ B_over_as) * (np.sum(gewichten_beta * hoek_beta * B_over_as))) / Delta
 a1 = (np.sum(gewichten_beta) * np.sum(gewichten_beta * hoek_beta * B_over_as) - (gewichten_beta @ B_over_as) * (gewichten_beta @ hoek_beta)) / Delta
 
-a0 = ((gewichten_beta @ (mag_veld_col)**2) * (gewichten_beta @ hoek_beta) - (gewichten_beta @ mag_veld_col) * (np.sum(gewichten_beta * hoek_beta * mag_veld_col))) / Delta
-a1 = (np.sum(gewichten_beta) * np.sum(gewichten_beta * hoek_beta * mag_veld_col) - (gewichten_beta @ mag_veld_col) * (gewichten_beta @ hoek_beta)) / Delta
-
-a1_m = a1 * 1000  # rad/T
-lengte_kwarts_m = lengte_kwarts / 1000  # m
-af_lengte_kwarts_m = af_lengte_kwarts / 1000  # m
-
-sigma_y = ((gewichten_beta @ (hoek_beta - a0 - a1 * mag_veld_col)**2) / 23)**(1/2)
-sf_a0 = sigma_y * ((gewichten_beta @ (mag_veld_col)**2) / Delta)**(1/2)
 sigma_y = ((gewichten_beta @ (hoek_beta - a0 - a1 * B_over_as)**2) / 23)**(1/2)
 sf_a0 = sigma_y * ((gewichten_beta @ (B_over_as)**2) / Delta)**(1/2)
 sf_a1 = sigma_y * ((np.sum(gewichten_beta)) / Delta)**(1/2)
@@ -161,12 +152,6 @@ plt.close()
 # =======================================================
 # Lineaire regressie met gewichtsfactoren zonder intercept
 # =======================================================
-
-f = lambda x, a: a * x
-
-# Gebruik curve_fit omdat deze een error estimation geeft
-fit = sp.optimize.curve_fit(f, mag_veld_col * lengte_kwarts / 10**6, hoek_beta, sigma = af_hoek_beta/3)
-print(fit)
 
 f = lambda x, a: a * x
 
