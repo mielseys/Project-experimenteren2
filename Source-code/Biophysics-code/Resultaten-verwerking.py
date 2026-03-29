@@ -119,10 +119,12 @@ sigma_y = ((gewichten_beta @ (hoek_beta - a0 - a1 * B_over_as)**2) / 23)**(1/2)
 sf_a0 = sigma_y * ((gewichten_beta @ (B_over_as)**2) / Delta)**(1/2)
 sf_a1 = sigma_y * ((np.sum(gewichten_beta)) / Delta)**(1/2)
 
-print(a0)
-print(a1)
-print(sf_a0)
-print(sf_a1)
+print(f"a0: {a0}")
+print(f"a1: {a1}")
+print(f"sf_a0: {sf_a0}")
+print(f"AF(a0): {3*sf_a0}")
+print(f"sf_a1: {sf_a1}")
+print(f"AF(a1): {3*sf_a1}")
 
 B_punten = np.linspace(np.min(B_over_as), np.max(B_over_as), 300)
 theta_punten = a0 + a1 * B_punten
