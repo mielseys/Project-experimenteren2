@@ -13,3 +13,7 @@ Door deze datapunten te interpoleren vonden we mooi een fit van het magnetisch v
 ![Interpolatie van het magnetisch veld](Figuren/interpolatie_magnetisch_veld.png)
 
 Het resultaat van het midden ligt in onze figuur en data op een afstand van 13.69 cm.
+
+
+
+Voor de rest van ons verslag verwijzen we jullie graag door naar onze latex verslag. We weten niet in welke mate we die online mogen zetten met dat deze geëvalueerd wordt, dus we zullen hier nog even mee afwachten tot er meer zekerheid is.
