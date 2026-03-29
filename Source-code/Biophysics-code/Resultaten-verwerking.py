@@ -101,39 +101,24 @@ plt.savefig(base_dir.parent.parent / "Data" / "Figuren" / "hoek_beta_vs_magnetis
 plt.close()
 
 # =======================================================
-# Lineaire regressie van hoek beta in functie van het magnetisch veld
+# Lineaire regressie met gewichtsfactoren zonder intercept
 # =======================================================
 
-gewichten_beta = 3 / af_hoek_beta
+f = lambda x, a: a * x
 
-def kostfunctie(coefficienten, gewichten = gewichten_beta, beta = hoek_beta, B = mag_veld_col):
-    a0, a1 = coefficienten
-    d_kwadraat = (beta - a0 - a1 * B)**2
-    return gewichten @ d_kwadraat
+# Gebruik curve_fit omdat deze een error estimation geeft
+fit = sp.optimize.curve_fit(f, mag_veld_col * lengte_kwarts / 10**6, hoek_beta, sigma = af_hoek_beta/3)
+print(fit)
 
-fit = sp.optimize.minimize
+B_over_as = mag_veld_col * lengte_kwarts / 10**6
+AF_B_over_as = B_over_as * (af_mag_veld_col / mag_veld_col + af_lengte_kwarts / lengte_kwarts)
 
-Delta = np.sum(gewichten_beta) * (gewichten_beta @ (mag_veld_col)**2) - (mag_veld_col @ gewichten_beta)**2
+xpunten = (np.min(B_over_as), np.max(B_over_as))
+ypunten = fit[0] * xpunten
 
-a0 = ((gewichten_beta @ (mag_veld_col)**2) * (gewichten_beta @ hoek_beta) - (gewichten_beta @ mag_veld_col) * (np.sum(gewichten_beta * hoek_beta * mag_veld_col))) / Delta
-a1 = (np.sum(gewichten_beta) * np.sum(gewichten_beta * hoek_beta * mag_veld_col) - (gewichten_beta @ mag_veld_col) * (gewichten_beta @ hoek_beta)) / Delta
-
-sigma_y = ((gewichten_beta @ (hoek_beta - a0 - a1 * mag_veld_col)**2) / 23)**(1/2)
-sf_a0 = sigma_y * ((gewichten_beta @ (mag_veld_col)**2) / Delta)**(1/2)
-sf_a1 = sigma_y * ((np.sum(gewichten_beta)) / Delta)**(1/2)
-
-print(a0)
-print(a1)
-print(sf_a0)
-print(sf_a1)
-
-B_punten = np.linspace(np.min(mag_veld_col), np.max(mag_veld_col), 300)
-theta_punten = a0 + a1 * B_punten
-
-plt.plot(mag_veld_col, hoek_beta, 'o', label=r'Hoek $\beta$')
-plt.errorbar(mag_veld_col, hoek_beta, xerr=af_mag_veld_col, yerr=af_hoek_beta, fmt='o', ecolor='red', capsize=5, label=r'Hoek $\beta$')
-plt.plot(B_punten, theta_punten, label="fit")
-plt.xlabel(r'Magnetisch veld $(mT)$')
+plt.errorbar(mag_veld_col * lengte_kwarts / 10**6, hoek_beta, xerr=AF_B_over_as, yerr=af_hoek_beta, fmt='o', ecolor='red', capsize=5, label=r'Hoek $\beta$')
+plt.plot(xpunten, ypunten, label=rf"Beste fit: $\beta = ({fit[0][0]:.1f}\pm {np.ceil(10 * fit[1][0, 0], ) / 10:.1f})\frac{{\text{{rad}}}}{{\text{{Tm}}}}Bl$")
+plt.xlabel(r'Magnetisch veld langs de as $(Tm)$')
 plt.ylabel(r'Hoek $\beta$ $(rad)$')
 plt.grid()
 plt.legend(fontsize=6, loc='upper right')
