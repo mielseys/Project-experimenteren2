@@ -118,10 +118,11 @@ a1 = (np.sum(gewichten_beta) * np.sum(gewichten_beta * hoek_beta * B_over_as) - 
 sigma_y = ((gewichten_beta @ (hoek_beta - a0 - a1 * B_over_as)**2) / 23)**(1/2)
 sf_a0 = sigma_y * ((gewichten_beta @ (B_over_as)**2) / Delta)**(1/2)
 sf_a1 = sigma_y * ((np.sum(gewichten_beta)) / Delta)**(1/2)
-af_a0 = 3 * sf_a0  # rad
-af_a1 = 3 * sf_a1  # rad/mT
-V = a1_m / lengte_kwarts_m  # rad/(T * m)
-af_V = V * (af_a1 * 1000/a1_m  + af_lengte_kwarts_m/lengte_kwarts_m)  # rad/(T * m)
+
+#af_a0 = 3 * sf_a0  # rad
+#af_a1 = 3 * sf_a1  # rad/mT
+#V = a1_m / lengte_kwarts_m  # rad/(T * m)
+#af_V = V * (af_a1 * 1000/a1_m  + af_lengte_kwarts_m/lengte_kwarts_m)  # rad/(T * m)
 
 
 print(f"a0: {a0}")
