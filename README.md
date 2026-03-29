@@ -68,5 +68,4 @@ Project-experimenteren2/
 
 Project Status:
 
-- Kalibratie inclusief gegevensverwerking ervan gedaan!
-- Metingen van de kwarts nog niet voltooid (problemen met de opstelling te verbinden met de arduino en het circuit aan de praat te krijgen).
+- Alle metingen gedaan, verslag wordt geschreven

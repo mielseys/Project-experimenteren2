@@ -42,7 +42,11 @@ v = (v_max_col - v_min_col) / 2
 plt.plot(stroom_col, v, 'o', label='Meetdata')
 #plt.errorbar(stroom_col, v, xerr=np.ones(25)*0.1, yerr=np.ones(25)*0.002, fmt='o', ecolor='red', capsize=5, label='Meetdata met foutbalken')
 plt.xlabel(r'Stroom (mA)')
+<<<<<<< HEAD
 plt.ylabel(r'Spanningsverschil $\Delta V = V_\text{MAX} - V_\text{MIN}$ (V)')
+=======
+plt.ylabel(r'Spanningsverschil $\Delta V$ (V)')
+>>>>>>> origin/main
 plt.grid()
 plt.savefig(base_dir.parent.parent / "Data" / "Figuren" / "spanningsverschil_vs_stroom.png", dpi=300, bbox_inches='tight')
 plt.close()

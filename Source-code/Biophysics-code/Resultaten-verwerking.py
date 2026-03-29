@@ -118,17 +118,28 @@ a1 = (np.sum(gewichten_beta) * np.sum(gewichten_beta * hoek_beta * B_over_as) - 
 sigma_y = ((gewichten_beta @ (hoek_beta - a0 - a1 * B_over_as)**2) / 23)**(1/2)
 sf_a0 = sigma_y * ((gewichten_beta @ (B_over_as)**2) / Delta)**(1/2)
 sf_a1 = sigma_y * ((np.sum(gewichten_beta)) / Delta)**(1/2)
+af_a0 = 3 * sf_a0  # rad
+af_a1 = 3 * sf_a1  # rad/mT
+V = a1_m / lengte_kwarts_m  # rad/(T * m)
+af_V = V * (af_a1 * 1000/a1_m  + af_lengte_kwarts_m/lengte_kwarts_m)  # rad/(T * m)
+
 
 print(f"a0: {a0}")
-print(f"a1: {a1}")
+print(f"a1: {a1}rad/mT")
 print(f"sf_a0: {sf_a0}")
-print(f"AF(a0): {3*sf_a0}")
+print(f"AF(a0): {af_a0}")
 print(f"sf_a1: {sf_a1}")
-print(f"AF(a1): {3*sf_a1}")
+print(f"AF(a1): {af_a1}")
+print(f"Verdet constante (a1 / lengte kwarts): {V} rad/(T * m)")
+print(f"AF Verdet constante: {af_V} rad/(T * m)")
 
 B_punten = np.linspace(np.min(B_over_as), np.max(B_over_as), 300)
 theta_punten = a0 + a1 * B_punten
 
+plt.plot(mag_veld_col, hoek_beta, 'o', label=r'Hoek $\beta$')
+plt.errorbar(mag_veld_col, hoek_beta, xerr=af_mag_veld_col, yerr=af_hoek_beta, fmt='o', ecolor='red', capsize=5, label=r'Hoek $\beta$')
+plt.plot(B_punten, theta_punten, label="fit")
+plt.xlabel(r'Magnetisch veld $(mT)$')
 plt.errorbar(B_over_as, hoek_beta, xerr=AF_B_over_as, yerr=af_hoek_beta, fmt='o', ecolor='red', capsize=5, label=r'Hoek $\beta$')
 plt.plot(B_punten, theta_punten, label=rf"Beste fit: $\beta = ({a1:.1f}\pm {np.ceil(30 * sf_a1) / 10})\frac{{\text{{rad}}}}{{\text{{Tm}}}}Bl + ({a0:.4f} \pm {np.ceil(3 * 10**4 * sf_a0) * 10**-4:.4f})\text{{rad}}$")
 plt.xlabel(r'Magnetisch veld langs de as $(Tm)$')
