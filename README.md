@@ -34,7 +34,12 @@ Het uitgebreide verslag met onze resultaten staat in deze [readme](Data/README.m
 
 **Slides (Later):**
 
-- Specifieer [Naam]
+- Inleiding + fysische achtergrond [Miel]
+- Methode (concept) [Casper]
+- Methode (kalibratie) [Miel]
+- Methode (Verdet-constante) [Casper]
+- Metingen + Bespreking resultaten [Naam]
+- Besluit [Naam]
 
 Zet gerust met meerdere je naam en op meerdere plaatsen. Wil je specificeren wat je doet, dan zet je dit er ook bij.
 
